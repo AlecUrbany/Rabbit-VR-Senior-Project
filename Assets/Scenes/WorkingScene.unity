@@ -9972,6 +9972,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rabbit: {fileID: 8709442213779819157, guid: e628d248aa7e15340b12818de6cb9fd1, type: 3}
+  hop_rabbit: {fileID: 8709442213779819157, guid: e628d248aa7e15340b12818de6cb9fd1, type: 3}
+  hippity_rabbit: {fileID: 8709442213779819157, guid: e628d248aa7e15340b12818de6cb9fd1, type: 3}
+  hoppity_rabbit: {fileID: 8709442213779819157, guid: e628d248aa7e15340b12818de6cb9fd1, type: 3}
+  gameObjectsArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  road: {fileID: 412167120}
+  farmers_garden: {fileID: 605635886}
+  courtyard: {fileID: 1678635700}
+  rose_garden: {fileID: 1866355836}
+  stable: {fileID: 645828103}
+  welcome_room: {fileID: 2095129399}
+  kitchen: {fileID: 1377406828}
+  library: {fileID: 1668050586}
+  dining_hall: {fileID: 1539319175}
 --- !u!1 &2019821763
 GameObject:
   m_ObjectHideFlags: 0

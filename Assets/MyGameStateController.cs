@@ -17,11 +17,36 @@ public class MyGameStateController : MonoBehaviour
     public GameObject hop_rabbit;
     public GameObject hippity_rabbit;
     public GameObject hoppity_rabbit;
+
+    public GameObject[] gameObjectsArray = new GameObject[9];
+    public GameObject road;
+    public GameObject farmers_garden;
+    public GameObject courtyard;
+    public GameObject rose_garden;
+    public GameObject stable;
+    public GameObject welcome_room;
+    public GameObject kitchen;
+    public GameObject library;
+    public GameObject dining_hall;
+    void PopulateRooms() 
+    {
+    gameObjectsArray[0] = road;
+    gameObjectsArray[1] = courtyard;
+    gameObjectsArray[2] = stable;
+    gameObjectsArray[3] = rose_garden;
+    gameObjectsArray[4] = farmers_garden;
+    gameObjectsArray[5] = kitchen;
+    gameObjectsArray[6] = dining_hall;
+    gameObjectsArray[8] = welcome_room;
+    gameObjectsArray[7] = library;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Starting");
         SpawnRabbits(hip);
+        PopulateRooms();
     }
 
     // Update is called once per frame
@@ -33,6 +58,9 @@ public class MyGameStateController : MonoBehaviour
     {
         Debug.Log("Spawning rabbit");
         rabbit = Instantiate(rabbit, transform.position, transform.rotation);
+        hop_rabbit = Instantiate(hop_rabbit, transform.position, transform.rotation);
+        hippity_rabbit = Instantiate(hippity_rabbit, transform.position, transform.rotation);
+        hoppity_rabbit = Instantiate(hoppity_rabbit, transform.position, transform.rotation);
         
     }
     void PrintRabbitLocations()
@@ -50,10 +78,13 @@ public class MyGameStateController : MonoBehaviour
         turn += 1;
         Debug.Log("Turn is now: " + turn.ToString());
         PrintRabbitLocations();
-        if(turn%2==0){
-            rabbit.transform.position = new Vector3(100.0f, 100.0f, 1.0f);
-            }else{
-                rabbit.transform.position = transform.position;
-            }
+        rabbit.transform.position = gameObjectsArray[hip[turn%hip.Length]].transform.position;
+        Debug.Log("Hip is at " + rabbit.transform.position.ToString());
+        hop_rabbit.transform.position = gameObjectsArray[hop[turn%hop.Length]].transform.position;
+        Debug.Log("Hop is at " + hop_rabbit.transform.position.ToString());
+                hippity_rabbit.transform.position = gameObjectsArray[hippity[turn%hippity.Length]].transform.position;
+        Debug.Log("Hippity is at " + hippity_rabbit.transform.position.ToString());
+                hoppity_rabbit.transform.position = gameObjectsArray[hoppity[turn%hoppity.Length]].transform.position;
+        Debug.Log("Hoppity is at " + hoppity_rabbit.transform.position.ToString());
     }
 }

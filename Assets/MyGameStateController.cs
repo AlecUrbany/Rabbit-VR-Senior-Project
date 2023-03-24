@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MyGameStateController : MonoBehaviour
 {
+    public int current_room = 0;
     int turn = 0;
     //The values represent the rooms in which the rabbit will be in during that given turn.
     int[] hip = new int[] { 1, 2, 4};

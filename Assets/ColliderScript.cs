@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class room_script : MonoBehaviour
+public class ColliderScript : MonoBehaviour
 {
-    public Vector3[] rabbit_spawn_locations;
-    public int num_of_rabbits_in_room = 0;
-    public int roomNumber;
-    
-    public Vector3 GetRabbitPosition(){
-        return transform.position;
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +14,13 @@ public class room_script : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("XR Origin"))
+        {
+
+        }
     }
 }

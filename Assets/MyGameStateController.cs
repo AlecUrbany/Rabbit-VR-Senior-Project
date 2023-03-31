@@ -15,6 +15,7 @@ public class MyGameStateController : MonoBehaviour
     int[] hippy = new int[] { 1, 2, 4 , 5, 8};
     int[] hoppy = new int[] { 1, 3, 4 , 5, 8};
     public GameObject rabbit;
+
     public GameObject hop_rabbit;
     public GameObject hippity_rabbit;
     public GameObject hoppity_rabbit;
@@ -79,7 +80,8 @@ public class MyGameStateController : MonoBehaviour
         turn += 1;
         Debug.Log("Turn is now: " + turn.ToString());
         PrintRabbitLocations();
-        rabbit.transform.position = gameObjectsArray[hip[turn%hip.Length]].transform.position;
+        //rabbit.MoveToNextRoom();
+        
         Debug.Log("Hip is at " + rabbit.transform.position.ToString());
         hop_rabbit.transform.position = gameObjectsArray[hop[turn%hop.Length]].transform.position;
         Debug.Log("Hop is at " + hop_rabbit.transform.position.ToString());

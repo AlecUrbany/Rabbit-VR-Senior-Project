@@ -6,7 +6,7 @@ public class room_script : MonoBehaviour
 {
     public Vector3[] rabbit_spawn_locations;
     public int num_of_rabbits_in_room = 0;
-    public int roomNumber;
+    public int room_number;
     
     public Vector3 GetRabbitPosition(){
         return transform.position;

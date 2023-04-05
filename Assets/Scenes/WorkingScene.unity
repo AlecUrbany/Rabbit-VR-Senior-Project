@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21878,8 +21878,9 @@ GameObject:
   - component: {fileID: 1990762951}
   - component: {fileID: 1990762952}
   - component: {fileID: 1990762956}
-  - component: {fileID: 1990762957}
   - component: {fileID: 1990762958}
+  - component: {fileID: 1990762957}
+  - component: {fileID: 1990762959}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Player
@@ -21999,7 +22000,38 @@ MonoBehaviour:
   - {fileID: 1539319175}
   - {fileID: 1668050586}
   - {fileID: 2095129399}
---- !u!54 &1990762957
+--- !u!143 &1990762957
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990762950}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 18
+  m_Radius: 10
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1990762958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990762950}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 40.282818, z: 0.9116211}
+  m_Center: {x: 0, y: -16.684069, z: 0.044189453}
+--- !u!54 &1990762959
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22014,20 +22046,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!65 &1990762958
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990762950}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 40.282818, z: 0.9116211}
-  m_Center: {x: 0, y: -16.684069, z: 0.044189453}
+  m_CollisionDetection: 0
 --- !u!1001 &2008714009
 PrefabInstance:
   m_ObjectHideFlags: 0

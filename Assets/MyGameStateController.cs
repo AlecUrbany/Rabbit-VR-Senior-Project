@@ -59,6 +59,12 @@ public class MyGameStateController : MonoBehaviour
         hop.GetComponent<rabbit_logic>().freedom = false;
         
     }
+
+    void SpawnFSA()
+    {
+
+    }
+
     public void IncrementTurn()
     {
 

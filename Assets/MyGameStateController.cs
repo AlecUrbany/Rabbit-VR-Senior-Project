@@ -17,6 +17,15 @@ public class MyGameStateController : MonoBehaviour
     public GameObject hop;
     public GameObject hip;
 
+    public GameObject rabbit_marker;
+
+    public GameObject hip_marker;
+    public GameObject hop_marker;
+
+    public GameObject player_marker;
+
+    public GameObject player;
+
     //consider populating rabbits into this array. Testing will be done on hop/hip
     public GameObject[] rabbits;
 
@@ -34,7 +43,7 @@ public class MyGameStateController : MonoBehaviour
         }
 
         SpawnRabbits();
-       
+        SpawnFSA();
     }
 
     // Update is called once per frame
@@ -52,17 +61,26 @@ public class MyGameStateController : MonoBehaviour
         hip.GetComponent<rabbit_logic>().room_route = hip_route;
         hip.GetComponent<rabbit_logic>().freedom = true;
 
+        // Spawn hip marker
+        hip_marker = Instantiate(rabbit_marker, hip.transform.position, transform.rotation);
+        hip_marker.GetComponent<marker_logic>().parent = hip;
+
         // Spawn hop
         hop = Instantiate(rabbit, rooms[0].transform.position, transform.rotation);
         hop.GetComponent<rabbit_logic>().playerScript = this;
         hop.GetComponent<rabbit_logic>().room_route = hop_route;
         hop.GetComponent<rabbit_logic>().freedom = false;
-        
+
+        // Spawn hip marker
+        hop_marker = Instantiate(rabbit_marker, hop.transform.position, transform.rotation);
+        hop_marker.GetComponent<marker_logic>().parent = hop;
+
     }
 
     void SpawnFSA()
     {
-
+        player = Instantiate(player_marker, gameObject.transform.position, transform.rotation);
+        player.GetComponent<marker_logic>().parent = gameObject;
     }
 
     public void IncrementTurn()

@@ -15,9 +15,11 @@ public class SceneSwitcher : MonoBehaviour
 
     }
 
-    public void SwitchScene(int selectedLevel = 0){
-        //SceneManager.LoadScene("Scene" + selectedLevel);
-        Debug.Log(numRabbits);
+    public void SwitchScene(int selectedLevel = 0)
+    {
+        //Gets level info
+        LevelInfo.get(selectedLevel);
+        //debug text
         Debug.Log("Scene Change: " + selectedLevel);
     }
 

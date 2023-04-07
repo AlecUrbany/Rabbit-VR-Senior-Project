@@ -22172,6 +22172,8 @@ MonoBehaviour:
   rabbit_marker: {fileID: 7646468922461201005, guid: 70fb2932a4cdffd42beb97a89edd79dd, type: 3}
   hip_marker: {fileID: 0}
   hop_marker: {fileID: 0}
+  player_marker: {fileID: 6354337115946016114, guid: 22ed0446ce1359d4db3ec976984d88f0, type: 3}
+  player: {fileID: 0}
   rabbits: []
   rooms:
   - {fileID: 412167120}

@@ -65,4 +65,8 @@ public class MyGameStateController : MonoBehaviour
         turn += 1;
         Debug.Log("Turn is now: " + turn.ToString());
     }
+    public void CaptureRabbit(){
+        hip.GetComponent<rabbit_logic>().GetCaptured();
+    }
+
 }

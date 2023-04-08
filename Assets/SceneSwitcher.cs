@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
+    public LevelInfo selectedLevel;
 
     public static LevelInfo[] InitializeLevels(){
 
@@ -19,9 +19,11 @@ public class SceneSwitcher : MonoBehaviour
 
     public void SwitchScene(int selectedLevelIndex = 0){
         LevelInfo[] levels = InitializeLevels();
-        LevelInfo selectedLevel = levels[selectedLevelIndex - 1];
+        selectedLevel = levels[selectedLevelIndex - 1];
 
+        Debug.Log("Chose Level: " + selectedLevelIndex);
         SceneManager.LoadScene("WorkingScene");
+
     }
 
 }
@@ -42,6 +44,9 @@ public class LevelInfo
 
     }
 
+    public int getNumRabbits(){
+        return this.numRabbits;
+    }
     public ArrayList getDFA(){
         return this.rabbitDFA;
     }

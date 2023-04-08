@@ -22,6 +22,7 @@ public class MyGameStateController : MonoBehaviour
 
     public GameObject[] rooms = new GameObject[9];
 
+    public GameObject SceneSwitcher;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,11 @@ public class MyGameStateController : MonoBehaviour
 
         SpawnRabbits();
        
+        SceneSwitcher = GameObject.Find("SceneSwitcher");
+        LevelInfo selectedLevel = SceneSwitcher.GetComponent<SceneSwitcher>().selectedLevel;
+        // The DFA matrix can be accessed by selectedLevel.getDFA();
+        // The number of rabbits can be accessed by selectedLevel.getNumRabbits();
+
     }
 
     // Update is called once per frame

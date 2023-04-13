@@ -13,6 +13,7 @@ public class MyGameStateController : MonoBehaviour
     public GameObject[] hop_route;
 
     public GameObject rabbit;
+    public Animator rabbit_animator;
 
     public GameObject hop;
     public GameObject hip;
@@ -22,7 +23,14 @@ public class MyGameStateController : MonoBehaviour
 
     public GameObject[] rooms = new GameObject[9];
 
-    
+    public GameObject rabbit_marker;
+    public GameObject hip_marker;
+    public GameObject hop_marker;
+
+
+    public GameObject player_marker;
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +42,7 @@ public class MyGameStateController : MonoBehaviour
         }
 
         SpawnRabbits();
+        SpawnFSA();
        
     }
 
@@ -52,11 +61,19 @@ public class MyGameStateController : MonoBehaviour
         hip.GetComponent<rabbit_logic>().room_route = hip_route;
         hip.GetComponent<rabbit_logic>().freedom = true;
 
+        // Spawn hip marker
+        hip_marker = Instantiate(rabbit_marker, hip.transform.position, transform.rotation);
+        hip_marker.GetComponent<marker_logic>().parent = hip;
+
         // Spawn hop
         hop = Instantiate(rabbit, rooms[0].transform.position, transform.rotation);
         hop.GetComponent<rabbit_logic>().playerScript = this;
         hop.GetComponent<rabbit_logic>().room_route = hop_route;
         hop.GetComponent<rabbit_logic>().freedom = false;
+
+        // Spawn hip marker
+        hop_marker = Instantiate(rabbit_marker, hop.transform.position, transform.rotation);
+        hop_marker.GetComponent<marker_logic>().parent = hop;
         
     }
     public void IncrementTurn()
@@ -67,6 +84,11 @@ public class MyGameStateController : MonoBehaviour
     }
     public void CaptureRabbit(){
         hip.GetComponent<rabbit_logic>().GetCaptured();
+    }
+    void SpawnFSA()
+    {
+        player = Instantiate(player_marker, gameObject.transform.position, transform.rotation);
+        player.GetComponent<marker_logic>().parent = gameObject;
     }
 
 }

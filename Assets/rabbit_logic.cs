@@ -9,10 +9,11 @@ public class rabbit_logic : MonoBehaviour
 
     //The path a rabbit will travel.
     public GameObject[] room_route;
-
+    public GameObject new_rabbit;
     public Animator animator;
     //Is the rabbit free to run around. This should be set to false when picked up by player or placed back in cage.
     public bool freedom = false; 
+    public bool moving = false;
 
     //How fast is the rabbit. 
     public float speed = 1.5f;
@@ -25,15 +26,24 @@ public class rabbit_logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(freedom ==  true && transform.position != room_route[playerScript.turn%room_route.Length].transform.position){
+        float threshold = .1f;
+        Vector3 targetPosition = room_route[playerScript.turn%room_route.Length].transform.position;
+        Debug.Log(Vector3.Distance(transform.position, targetPosition));
+
+        if(freedom ==  true && (Vector3.Distance(transform.position, targetPosition) >= threshold)){
             //The rabbit has escaped so it will traverse the room according to its room_route
             transform.position = Vector3.MoveTowards(transform.position, room_route[playerScript.turn%room_route.Length].transform.position, speed);
             transform.rotation = Quaternion.LookRotation((room_route[playerScript.turn%room_route.Length].transform.position - transform.position).normalized);
-            animator.SetBool("IsMoving",true);
+            new_rabbit.GetComponent<Animator>().SetBool("IsMoving",true);
+            moving = true;
+            //animator.SetBool("IsMoving",true);
 
         }else
         {
-            animator.SetBool("IsMoving",false);
+            Debug.Log("HELP");
+            new_rabbit.GetComponent<Animator>().SetBool("IsMoving",false);
+            moving = false;
+            //animator.SetBool("IsMoving",false);
             //Captured so do nothing.
         }
     }

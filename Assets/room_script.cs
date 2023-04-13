@@ -41,4 +41,8 @@ public class room_script : MonoBehaviour
         if(null != playerScript)
             Debug.Log("Player is in Room" + playerScript.current_room);
     }
+    private void OnTriggerStay(Collider other)
+    {
+        //Debug.Log("AmONG US");
+    }
 }

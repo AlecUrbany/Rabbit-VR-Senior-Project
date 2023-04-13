@@ -114,8 +114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScript: {fileID: 0}
   room_route: []
-  animator: {fileID: 7912344132541474313}
+  new_rabbit: {fileID: 7297735119093547185}
+  animator: {fileID: 7088266870896262506}
   freedom: 0
+  moving: 0
   speed: 1
 --- !u!54 &3586569357895039920
 Rigidbody:
@@ -203,6 +205,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: ace5332b3cdd3994f9e2d66fb80ab076, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Activated:
     m_PersistentCalls:
       m_Calls: []
@@ -210,7 +224,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
+  m_StartingSelectFilters:
+  - {fileID: 0}
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -257,7 +272,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -639,6 +654,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7566928282359292815, guid: d59802642e4b7b64198ae05c474580ae, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68398792a97e7f04b9ce0281569528ab, type: 2}
+    - target: {fileID: 7566928282359292815, guid: d59802642e4b7b64198ae05c474580ae, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 985ccec468ba4a947af731e6f72f7ad3, type: 2}
     - target: {fileID: 8823709575717323308, guid: d59802642e4b7b64198ae05c474580ae, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -655,7 +678,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d59802642e4b7b64198ae05c474580ae, type: 3}
   m_PrefabInstance: {fileID: 7604234225008246240}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7912344132541474313
+--- !u!95 &7088266870896262506
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

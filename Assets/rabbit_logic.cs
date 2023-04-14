@@ -14,7 +14,7 @@ public class rabbit_logic : MonoBehaviour
     //Is the rabbit free to run around. This should be set to false when picked up by player or placed back in cage.
     public bool freedom = false; 
     public bool moving = false;
-
+  
     //How fast is the rabbit. 
     public float speed = 1.5f;
 
@@ -26,9 +26,11 @@ public class rabbit_logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float threshold = .1f;
+       
         Vector3 targetPosition = room_route[playerScript.turn%room_route.Length].transform.position;
-        Debug.Log(Vector3.Distance(transform.position, targetPosition));
+        //Debug.Log(Vector3.Distance(transform.position, targetPosition));
 
         if(freedom ==  true && (Vector3.Distance(transform.position, targetPosition) >= threshold)){
             //The rabbit has escaped so it will traverse the room according to its room_route
@@ -40,7 +42,7 @@ public class rabbit_logic : MonoBehaviour
 
         }else
         {
-            Debug.Log("HELP");
+            //Debug.Log("HELP");
             new_rabbit.GetComponent<Animator>().SetBool("IsMoving",false);
             moving = false;
             //animator.SetBool("IsMoving",false);

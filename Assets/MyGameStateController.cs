@@ -63,9 +63,7 @@ public class MyGameStateController : MonoBehaviour
 
         // Spawn hip
         hip = Instantiate(rabbit, rooms[0].transform.position, transform.rotation);
-        Debug.Log("AMONG US");
-        hip.GetComponent<CustomGrabInteractable>().playerScript = this;
-        hip.GetComponent<rabbit_logic>().playerScript = this;
+
         hip.GetComponent<rabbit_logic>().room_route = hip_route;
         hip.GetComponent<rabbit_logic>().freedom = true;
 
@@ -75,8 +73,7 @@ public class MyGameStateController : MonoBehaviour
 
         // Spawn hop
         hop = Instantiate(rabbit, rooms[0].transform.position, transform.rotation);
-        hip.GetComponent<CustomGrabInteractable>().playerScript = this;
-        hop.GetComponent<rabbit_logic>().playerScript = this;
+
         hop.GetComponent<rabbit_logic>().room_route = hop_route;
         hop.GetComponent<rabbit_logic>().freedom = false;
 
@@ -92,12 +89,13 @@ public class MyGameStateController : MonoBehaviour
         Debug.Log("Turn is now: " + turn.ToString());
         int routeLen = hip.GetComponent<rabbit_logic>().room_route.Length;
         GameObject rm = hip.GetComponent<rabbit_logic>().room_route[turn % routeLen];
-        //Debug.Log("Rabbit room: " + ((turn + 1) % hip.GetComponent<rabbit_logic>().room_route.Length).ToString());
-        //Debug.Log("Our room: " + current_room.ToString());
-        //Debug.Log("Rabbit room name: " + rm.name + "\troom number: " + rm.GetComponent<room_script>().room_number);
+
         if (current_room != 0 && current_room == rm.GetComponent<room_script>().room_number)//(turn + 1) % hip.GetComponent<rabbit_logic>().room_route.Length)
         {
             hip.GetComponent<rabbit_logic>().GetGrabbed();
+        }else if(current_room == 0 && hip.GetComponent<rabbit_logic>().follow == true)
+        {
+            hip.GetComponent<rabbit_logic>().GetCaptured();
         }
 
     }

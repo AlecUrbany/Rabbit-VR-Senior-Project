@@ -8,6 +8,7 @@ public class MyGameStateController : MonoBehaviour
     public int current_room = 0;
     public int turn = 0;
 
+    public static MyGameStateController main;
 
     public GameObject[] hip_route;
     public GameObject[] hop_route;
@@ -30,6 +31,11 @@ public class MyGameStateController : MonoBehaviour
 
     public GameObject player_marker;
     public GameObject player;
+
+    void Awake()
+    {
+        main = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +63,7 @@ public class MyGameStateController : MonoBehaviour
 
         // Spawn hip
         hip = Instantiate(rabbit, rooms[0].transform.position, transform.rotation);
+        Debug.Log("AMONG US");
         hip.GetComponent<CustomGrabInteractable>().playerScript = this;
         hip.GetComponent<rabbit_logic>().playerScript = this;
         hip.GetComponent<rabbit_logic>().room_route = hip_route;
@@ -90,7 +97,7 @@ public class MyGameStateController : MonoBehaviour
         //Debug.Log("Rabbit room name: " + rm.name + "\troom number: " + rm.GetComponent<room_script>().room_number);
         if (current_room != 0 && current_room == rm.GetComponent<room_script>().room_number)//(turn + 1) % hip.GetComponent<rabbit_logic>().room_route.Length)
         {
-            hip.GetComponent<rabbit_logic>().GetCaptured();
+            hip.GetComponent<rabbit_logic>().GetGrabbed();
         }
 
     }

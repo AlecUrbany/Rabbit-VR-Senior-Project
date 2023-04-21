@@ -114,11 +114,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScript: {fileID: 0}
   room_route: []
+  capture_room: []
   new_rabbit: {fileID: 7297735119093547185}
   animator: {fileID: 7088266870896262506}
-  freedom: 0
   moving: 0
+  freedom: 0
+  follow: 0
   speed: 1
+  follow_radius: 10
 --- !u!54 &3586569357895039920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,7 +191,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
+  m_StartingSelectFilters:
+  - {fileID: 0}
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []

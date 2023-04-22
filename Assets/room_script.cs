@@ -14,14 +14,9 @@ public class room_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+         playerScript = MyGameStateController.main;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player")){
@@ -41,8 +36,5 @@ public class room_script : MonoBehaviour
         if(null != playerScript)
             Debug.Log("Player is in Room" + playerScript.current_room);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        //Debug.Log("AmONG US");
-    }
+
 }

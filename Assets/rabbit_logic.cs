@@ -14,6 +14,8 @@ public class rabbit_logic : MonoBehaviour
     //Is the rabbit free to run around. This should be set to false when picked up by player or placed back in cage.
     public bool freedom = false; 
     public bool follow = false;
+
+    public bool safe = false;
     //How fast is the rabbit. 
     public NavMeshAgent agent;
 
@@ -28,10 +30,17 @@ public class rabbit_logic : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
+        if(playerScript.turn % room_route.Length == (room_route.Length-1))
+        {
+            safe = true;
+        }else
+        {
+            safe = false;
+        }
         
-
         if(freedom == true)//move to the rooms.
         {
             agent.SetDestination(room_route[playerScript.turn%room_route.Length].transform.position);

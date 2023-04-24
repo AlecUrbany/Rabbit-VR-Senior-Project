@@ -25,10 +25,13 @@ public class MyGameStateController : MonoBehaviour
     [Tooltip("List of rooms, index matters. 0..8 ")]
     public GameObject[] rooms = new GameObject[9];
     public int turn = 0;
+    public int max_turn = 99;
     //private
     private GameObject[] rabbits;
     private int[][] game;
+    private string[] gameNames;
     private int number_of_followers = 0;
+    private bool game_in_progress = false;
 
     /*
     Base Rabbit Expressions:
@@ -55,12 +58,42 @@ public class MyGameStateController : MonoBehaviour
     void Start()
     {
         Debug.Log("Starting");
-        CreateGames(level);
-        SpawnRabbits();
-   
-    }
 
-void CreateGames(int level)
+    }
+public void ButtonClicked(int arg)
+    {
+        
+        switch (arg)
+        {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                if (!game_in_progress) { KillGame(); CreateGames(arg); }
+                game_in_progress = true;
+                break;
+            case 6:
+                KillGame();
+                break;
+            default:
+                break;
+
+        }
+    }
+public void KillGame()
+    {
+        if (rabbits == null) { return; }
+        for(int i = rabbits.Length - 1; i >= 0; i--)
+        {
+            Destroy(rabbits[i]);
+        }
+        rabbits = null;
+        turn = 0;
+        number_of_followers = 0;
+        game_in_progress = false;
+    }
+public void CreateGames(int level)
 {
     switch (level)
     {
@@ -68,39 +101,74 @@ void CreateGames(int level)
             game = new int[2][];
             game[0] = _HOP;
             game[1] = _HIPPITY;
-            break;
+                gameNames = new string[2];
+                gameNames[0] = "HOP";
+                gameNames[0] = "HIPPITY";
+                SpawnRabbits();
+                break;
 
         case 2:
             game = new int[2][];
             game[0] = _HIP.Concat(_HOP).ToArray();
             game[1] = _HIPPITY.Concat(_HOP).ToArray();
-            break;
+                SpawnRabbits();
+                break;
 
         case 3:
             game = new int[2][];
             game[0] = _HOP.Concat(_HIPPY).ToArray();
             game[1] = _HIPPITY.Concat(_HIP).ToArray();
-            break;
+                SpawnRabbits();
+                break;
 
         case 4:
             game = new int[2][];
             game[0] = _HIP;
             game[1] = _HOP;
-            break;
+                SpawnRabbits();
+                break;
 
         case 5:
             game = new int[3][];
             game[0] = _HOP;
             game[1] = _HIPPITY;
             game[2] = _HIPPY;
-            break;
+                SpawnRabbits();
+                break;
 
         default:
             // handle invalid level input
             break;
     }
 }
-void SpawnRabbits()
+    void checkGameProgress()
+    {
+        if(turn > max_turn)
+        {
+            //LOSE GAME!
+            Debug.Log("Out of turns!");
+        }
+        else
+        {
+            Debug.Log("Remaining turns: " + (max_turn - turn));
+        }
+        bool haveWinner = true;
+        for( int i = 0; i < rabbits.Length; i++) 
+        {
+            if(rabbits[i].GetComponent<rabbit_logic>().freedom == true || rabbits[i].GetComponent<rabbit_logic>().follow == true)
+            {
+                haveWinner = false;
+                break;
+            }
+        }
+        //WIN GAME!
+        if (haveWinner == true)
+        {
+            game_in_progress = false;
+            Debug.Log("Game Won!");
+        }
+    }
+    public void SpawnRabbits()
 {
     Debug.Log("Spawning Rabbits:");
     rabbits = new GameObject[game.Length];
@@ -115,7 +183,8 @@ void SpawnRabbits()
         }
         rabbits[i].GetComponent<rabbit_logic>().room_route = temp_route;
         rabbits[i].GetComponent<rabbit_logic>().freedom = true;
-    }
+        rabbits[i].GetComponent<rabbit_logic>().rabName = gameNames[i];
+        }
 }
 
 
@@ -138,6 +207,7 @@ void SpawnRabbits()
             }
         }
 
+        checkGameProgress();
     }
     private void CaptureRabbit(GameObject rabbit)
     {

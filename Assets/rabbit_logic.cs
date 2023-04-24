@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class rabbit_logic : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class rabbit_logic : MonoBehaviour
     //Is the rabbit free to run around. This should be set to false when picked up by player or placed back in cage.
     public bool freedom = false; 
     public bool follow = false;
-
+    public string rabName = "rabbit";
     public bool safe = false;
     //How fast is the rabbit. 
     public NavMeshAgent agent;
+    public TextMeshPro myName;
 
     void Start()
     {
@@ -26,6 +28,8 @@ public class rabbit_logic : MonoBehaviour
 
         //This needs to change when we do the start game button. 
         agent.SetDestination(room_route[playerScript.turn%room_route.Length].transform.position);
+        myName = GetComponentInChildren<TextMeshPro>();
+        myName.text = rabName;
        
     }
 
@@ -33,7 +37,10 @@ public class rabbit_logic : MonoBehaviour
 
     void Update()
     {
-        if(playerScript.turn % room_route.Length == (room_route.Length-1))
+        myName.transform.LookAt(playerScript.transform);
+        //currently broken does not spawn all and backwards when does
+       // myName.rectTransform.rotation = Quaternion.Euler(0, 180, 0);
+        if (playerScript.turn % room_route.Length == (room_route.Length-1))
         {
             safe = true;
         }else

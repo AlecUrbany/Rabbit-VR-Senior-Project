@@ -29,17 +29,17 @@ public class rabbit_logic : MonoBehaviour
         //This needs to change when we do the start game button. 
         agent.SetDestination(room_route[playerScript.turn%room_route.Length].transform.position);
         myName = GetComponentInChildren<TextMeshPro>();
-        myName.text = rabName;
        
     }
-
+    
     // Update is called once per frame
 
     void Update()
     {
-        myName.transform.LookAt(playerScript.transform);
-        //currently broken does not spawn all and backwards when does
-       // myName.rectTransform.rotation = Quaternion.Euler(0, 180, 0);
+        //The forward vector on textMeshPro is flipped. 
+        Vector3 oppositeDirection = transform.position - playerScript.transform.position;
+        myName.transform.LookAt(oppositeDirection);
+
         if (playerScript.turn % room_route.Length == (room_route.Length-1))
         {
             safe = true;

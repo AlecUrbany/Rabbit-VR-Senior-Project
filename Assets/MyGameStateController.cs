@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class MyGameStateController : MonoBehaviour
@@ -24,6 +25,11 @@ public class MyGameStateController : MonoBehaviour
     [SerializeField]
     [Tooltip("List of rooms, index matters. 0..8 ")]
     public GameObject[] rooms = new GameObject[9];
+    
+    [SerializeField]
+    [Tooltip("The message to be displayed for various conditions. Win/Lose/etc")]
+    public TextMeshPro message;
+    public TextMeshPro turnCounter;
     public int turn = 0;
     public int max_turn = 99;
     //private
@@ -32,6 +38,7 @@ public class MyGameStateController : MonoBehaviour
     private string[] gameNames;
     private int number_of_followers = 0;
     private bool game_in_progress = false;
+
 
     /*
     Base Rabbit Expressions:
@@ -92,6 +99,7 @@ public void KillGame()
         turn = 0;
         number_of_followers = 0;
         game_in_progress = false;
+        message.GetComponent<messageScript>().SetMessage("Restarting Game...");
     }
 public void CreateGames(int level)
 {
@@ -103,7 +111,10 @@ public void CreateGames(int level)
             game[1] = _HIPPITY;
                 gameNames = new string[2];
                 gameNames[0] = "HOP";
-                gameNames[0] = "HIPPITY";
+                gameNames[1] = "HIPPITY";
+                max_turn = 10;
+                message.GetComponent<messageScript>().SetMessage("HOP and HIPPITY escaped!\n Can you help catch them? You have " + (max_turn) + " turns.");
+                turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
                 SpawnRabbits();
                 break;
 
@@ -111,6 +122,12 @@ public void CreateGames(int level)
             game = new int[2][];
             game[0] = _HIP.Concat(_HOP).ToArray();
             game[1] = _HIPPITY.Concat(_HOP).ToArray();
+                gameNames = new string[2];
+                gameNames[0] = "HIPHOP";
+                gameNames[1] = "HIPPITY";
+                max_turn = 10;
+                message.GetComponent<messageScript>().SetMessage("HIPHOP and HIPPITY escaped!\n Can you help catch them? You have " + (max_turn) + " turns.");
+                turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
                 SpawnRabbits();
                 break;
 
@@ -118,6 +135,12 @@ public void CreateGames(int level)
             game = new int[2][];
             game[0] = _HOP.Concat(_HIPPY).ToArray();
             game[1] = _HIPPITY.Concat(_HIP).ToArray();
+                gameNames = new string[2];
+                gameNames[0] = "HOPHIPPY";
+                gameNames[1] = "HIPPITYHIP";
+                max_turn = 10;
+                message.GetComponent<messageScript>().SetMessage("HOPHIPPY and HIPPITYHIP escaped!\n Can you help catch them? You have " + (max_turn) + " turns.");
+                turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
                 SpawnRabbits();
                 break;
 
@@ -125,6 +148,12 @@ public void CreateGames(int level)
             game = new int[2][];
             game[0] = _HIP;
             game[1] = _HOP;
+                gameNames = new string[2];
+                gameNames[0] = "HIP";
+                gameNames[1] = "HOP";
+                max_turn = 12;
+                message.GetComponent<messageScript>().SetMessage("HIP and HOP escaped!\n Can you help catch them? You have " + (max_turn) + " turns.");
+                turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
                 SpawnRabbits();
                 break;
 
@@ -133,6 +162,14 @@ public void CreateGames(int level)
             game[0] = _HOP;
             game[1] = _HIPPITY;
             game[2] = _HIPPY;
+                gameNames = new string[3];
+                gameNames[0] = "HOP";
+                gameNames[1] = "HIPPITY";
+                gameNames[2] = "HIPPY";
+                max_turn = 18;
+                //string mymessage = "HOP, HIPPITY, and HIPPY escaped!\n Can you help catch them? You have " + (max_turn) + " turns.";
+                message.GetComponent<messageScript>().SetMessage("HOP, HIPPITY, and HIPPY escaped!\n Can you help catch them? You have " + (max_turn) + " turns.");
+                turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
                 SpawnRabbits();
                 break;
 
@@ -147,6 +184,7 @@ public void CreateGames(int level)
         {
             //LOSE GAME!
             Debug.Log("Out of turns!");
+            message.GetComponent<messageScript>().SetMessage("Out of turns. Try again?");
         }
         else
         {
@@ -165,7 +203,8 @@ public void CreateGames(int level)
         if (haveWinner == true)
         {
             game_in_progress = false;
-            Debug.Log("Game Won!");
+            //Debug.Log("Game Won!");
+            message.GetComponent<messageScript>().SetMessage("Congrats! \nYou caught all the rabbits!");
         }
     }
     public void SpawnRabbits()
@@ -183,15 +222,16 @@ public void CreateGames(int level)
         }
         rabbits[i].GetComponent<rabbit_logic>().room_route = temp_route;
         rabbits[i].GetComponent<rabbit_logic>().freedom = true;
-        rabbits[i].GetComponent<rabbit_logic>().rabName = gameNames[i];
+        //rabbits[i].GetComponent<rabbit_logic>().rabName = gameNames[i];
+        rabbits[i].GetComponentInChildren<TextMeshPro>().text = gameNames[i];
         }
 }
 
 
     public void IncrementTurn()
     {
-
-        turn += 1;
+        if(game_in_progress){turn += 1;
+        turnCounter.GetComponent<messageScript>().SetMessage("Turns Remaining:\n" + (max_turn - turn));
 
         for(int i = 0; i < rabbits.Length; i ++)
         {
@@ -206,8 +246,9 @@ public void CreateGames(int level)
                 CaptureRabbit(rabbits[i]);
             }
         }
-
+        
         checkGameProgress();
+        }
     }
     private void CaptureRabbit(GameObject rabbit)
     {

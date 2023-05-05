@@ -20,7 +20,7 @@ public class rabbit_logic : MonoBehaviour
     //How fast is the rabbit. 
     public NavMeshAgent agent;
     public TextMeshPro myName;
-
+    public TextMeshPro myMarkerName;
     void Start()
     {
         playerScript = MyGameStateController.main;
@@ -28,8 +28,10 @@ public class rabbit_logic : MonoBehaviour
 
         //This needs to change when we do the start game button. 
         agent.SetDestination(room_route[playerScript.turn%room_route.Length].transform.position);
-        myName = GetComponentInChildren<TextMeshPro>();
-       
+        //myName = GetComponentInChildren<TextMeshPro>();
+        //myMarkerName = GetComponentInChildren<TextMeshPro>();
+        
+
     }
     
     // Update is called once per frame

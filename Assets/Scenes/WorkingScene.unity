@@ -23441,7 +23441,7 @@ PrefabInstance:
     - target: {fileID: 4199865583202110138, guid: 08c6be43ee1b34e40922a9ce858bb05a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 209e7643dc5013349ac6bae01b8fe007, type: 2}
+      objectReference: {fileID: 2100000, guid: c1dd5a01b33559f41adf55c1cffd20ad, type: 2}
     - target: {fileID: 4199865583202110138, guid: 08c6be43ee1b34e40922a9ce858bb05a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -59429,6 +59429,10 @@ PrefabInstance:
       propertyPath: m_ClearFlags
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3872359457149251332, guid: 0cdf725910c744e4082389594d2cc440, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: e3562e030101e6744abd7e2f043ee346, type: 2}
     - target: {fileID: 3872359457149251332, guid: 0cdf725910c744e4082389594d2cc440, type: 3}
       propertyPath: orthographic size
       value: 612.68866

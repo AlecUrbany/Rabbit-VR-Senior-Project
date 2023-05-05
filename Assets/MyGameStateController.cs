@@ -222,8 +222,9 @@ public void CreateGames(int level)
         }
         rabbits[i].GetComponent<rabbit_logic>().room_route = temp_route;
         rabbits[i].GetComponent<rabbit_logic>().freedom = true;
-        //rabbits[i].GetComponent<rabbit_logic>().rabName = gameNames[i];
-        rabbits[i].GetComponentInChildren<TextMeshPro>().text = gameNames[i];
+        rabbits[i].GetComponent<rabbit_logic>().myName.text = gameNames[i];
+        rabbits[i].GetComponent<rabbit_logic>().myMarkerName.text = gameNames[i];
+
         }
 }
 
